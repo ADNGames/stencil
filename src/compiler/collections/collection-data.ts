@@ -324,7 +324,11 @@ function serializeStyle(config: d.Config, compiledComponentRelativeDirPath: stri
       // we've already figured out the component's relative path from the collection file
       // use the value we already created in serializeComponentPath()
       // create a relative path from the collection file to the style path
-      return normalizePath(config.sys.path.join(compiledComponentRelativeDirPath, externalStyle.cmpRelativePath));
+      // always expect a css file, preprocessors must produce this
+      const extn = config.sys.path.extname(externalStyle.cmpRelativePath);
+      const cssFile = externalStyle.cmpRelativePath.slice(0, -extn.length) + '.css';
+
+      return normalizePath(config.sys.path.join(compiledComponentRelativeDirPath, cssFile));
     });
 
     modeStyleData.stylePaths.sort();

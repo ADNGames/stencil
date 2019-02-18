@@ -28,10 +28,10 @@ export function getComponentDecoratorMeta(diagnostics: d.Diagnostic[], checker: 
     https://html.spec.whatwg.org/multipage/custom-elements.html#valid-custom-element-name for more info.`);
   }
 
-  if (node.heritageClauses && node.heritageClauses.some(c => c.token === ts.SyntaxKind.ExtendsKeyword)) {
-    throw new Error(`Classes decorated with @Component can not extend from a base class.
-  Inherency is temporarily disabled for stencil components.`);
-  }
+  // if (node.heritageClauses && node.heritageClauses.some(c => c.token === ts.SyntaxKind.ExtendsKeyword)) {
+  //   throw new Error(`Classes decorated with @Component can not extend from a base class.
+  // Inherency is temporarily disabled for stencil components.`);
+  // }
 
   // check if class has more than one decorator
   if (node.decorators.length > 1) {
